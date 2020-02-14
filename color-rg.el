@@ -1505,11 +1505,13 @@ Function `move-to-column' can't handle mixed string of Chinese and English corre
   ;; Set edit area.
   (let (start end)
     ;; Make all buffer with readonly text property.
-    (let ((inhibit-read-only t))
-      (save-excursion
-        (put-text-property 1 2 'front-sticky '(read-only))
-        (put-text-property (point-min) (point-max) 'read-only t)
-        ))
+    ;; FIXME: don't know what these 5 lines for, but comment them solve's the issue #40
+    ;; https://github.com/manateelazycat/color-rg/issues/40
+    ;; (let ((inhibit-read-only t))
+    ;;   (save-excursion
+    ;;     (put-text-property 1 2 'front-sticky '(read-only))
+    ;;     (put-text-property (point-min) (point-max) 'read-only t)
+    ;;     ))
     ;; Make all code with edit property.
     (let ((inhibit-read-only t))
       (save-excursion
